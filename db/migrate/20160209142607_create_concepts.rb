@@ -1,0 +1,11 @@
+class CreateConcepts < ActiveRecord::Migration
+  def change
+    create_table :concepts do |t|
+      t.string :idea
+      t.string :relevance
+      t.references :speech, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
+  end
+end

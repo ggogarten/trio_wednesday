@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @candidate.name %>
+</p>
+
+<p>
+  <strong>Party:</strong>
+  <%= @candidate.party %>
+</p>
+
+<h3>Speeches</h3>
+<% @candidate.speeches.each do |speech| %> <p>
+<%= speech.date %>  
+<%= speech.text %>
+<br>
+Added on: <%= speech.created_at %>
+</p> <% end %>
+
+
+
+<%= link_to 'Edit', edit_candidate_path(@candidate) %> |
+<%= link_to 'Back', candidates_path %>

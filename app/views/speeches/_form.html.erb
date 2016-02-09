@@ -1,0 +1,29 @@
+<%= form_for(@speech) do |f| %>
+  <% if @speech.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@speech.errors.count, "error") %> prohibited this speech from being saved:</h2>
+
+      <ul>
+      <% @speech.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </div>
+  <div class="field">
+    <%= f.label :candidate_id %><br>
+    <%= f.text_field :candidate_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

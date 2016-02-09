@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @speech.date %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @speech.text %>
+</p>
+
+<p>
+  <strong>Candidate:</strong>
+  <%= @speech.candidate %>
+</p>
+
+<%= link_to 'Edit', edit_speech_path(@speech) %> |
+<%= link_to 'Back', speeches_path %>
