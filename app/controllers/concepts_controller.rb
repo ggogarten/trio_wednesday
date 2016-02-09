@@ -67,7 +67,7 @@ class ConceptsController < ApplicationController
     key = 'be2d1daed89556039d606f9062dcef7983146537'
     alchemyapi = AlchemyAPI.new(key)
 
-    demo_text = "demo trying this baby out for the first time, i got it works, go watson."
+    demo_text = "The Declaration of Independence is the statement adopted by the Continental Congress meeting at Philadelphia."
 
     puts ''
     puts ''
@@ -102,6 +102,8 @@ class ConceptsController < ApplicationController
     else
       puts 'Error in concept tagging call: ' + response['statusInfo']
     end
+    # redirect_to concept_path
+    index()
   end
 
 
