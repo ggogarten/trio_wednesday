@@ -1,3 +1,5 @@
+require './alchemyapi.rb'
+
 class ConceptsController < ApplicationController
   before_action :set_concept, only: [:show, :edit, :update, :destroy]
 
@@ -61,14 +63,56 @@ class ConceptsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_concept
-      @concept = Concept.find(params[:id])
-    end
+  def connect
+    key = 'be2d1daed89556039d606f9062dcef7983146537'
+    alchemyapi = AlchemyAPI.new(key)
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def concept_params
-      params.require(:concept).permit(:idea, :relevance, :speech_id)
+    demo_text = "demo trying this baby out for the first time, i got it works, go watson."
+
+    puts ''
+    puts ''
+    puts ''
+    puts '############################################'
+    puts '#  Concept Tagging Example                 #'
+    puts '############################################'
+    puts ''
+    puts ''
+
+    puts 'Processing text: ' + demo_text
+    puts ''
+
+    response = alchemyapi.concepts('text', demo_text)
+
+    if response['status'] == 'OK'
+      puts '## Response Object ##'
+      puts JSON.pretty_generate(response)
+
+
+      puts ''
+      puts '## Concepts ##'
+      for concept in response['concepts']
+        puts 'text: ' + concept['text']
+        puts 'relevance: ' + concept['relevance']
+        puts ''
+        i = Concept.new
+        i.idea = concept['text']
+        i.relevance = concept['relevance']
+        i.save
+      end
+    else
+      puts 'Error in concept tagging call: ' + response['statusInfo']
     end
+  end
+
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_concept
+    @concept = Concept.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def concept_params
+    params.require(:concept).permit(:idea, :relevance, :speech_id)
+  end
 end
