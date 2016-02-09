@@ -63,48 +63,48 @@ class ConceptsController < ApplicationController
     end
   end
 
-  def connect
-    key = 'be2d1daed89556039d606f9062dcef7983146537'
-    alchemyapi = AlchemyAPI.new(key)
-
-    demo_text = "The Declaration of Independence is the statement adopted by the Continental Congress meeting at Philadelphia."
-
-    puts ''
-    puts ''
-    puts ''
-    puts '############################################'
-    puts '#  Concept Tagging Example                 #'
-    puts '############################################'
-    puts ''
-    puts ''
-
-    puts 'Processing text: ' + demo_text
-    puts ''
-
-    response = alchemyapi.concepts('text', demo_text)
-
-    if response['status'] == 'OK'
-      puts '## Response Object ##'
-      puts JSON.pretty_generate(response)
-
-
-      puts ''
-      puts '## Concepts ##'
-      for concept in response['concepts']
-        puts 'text: ' + concept['text']
-        puts 'relevance: ' + concept['relevance']
-        puts ''
-        i = Concept.new
-        i.idea = concept['text']
-        i.relevance = concept['relevance']
-        i.save
-      end
-    else
-      puts 'Error in concept tagging call: ' + response['statusInfo']
-    end
-    # redirect_to concept_path
-    index()
-  end
+  # def connect
+  #   key = 'be2d1daed89556039d606f9062dcef7983146537'
+  #   alchemyapi = AlchemyAPI.new(key)
+  #
+  #   demo_text = "The Declaration of Independence is the statement adopted by the Continental Congress meeting at Philadelphia, Pennsylvania on July 4, 1776, which announced that the thirteen American colonies,[2] then at war with Great Britain, regarded themselves as thirteen newly independent sovereign states, and no longer a part of the British Empire. Instead they formed a new nation—the United States of America. John Adams was a leader in pushing for independence, which was unanimously approved on July 2. A committee of five had already drafted the formal declaration, to be ready when Congress voted on independence. The term 'Declaration of Independence' is not used in the document itself."
+  #
+  #   puts ''
+  #   puts ''
+  #   puts ''
+  #   puts '############################################'
+  #   puts '#  Concept Tagging Example                 #'
+  #   puts '############################################'
+  #   puts ''
+  #   puts ''
+  #
+  #   puts 'Processing text: ' + demo_text
+  #   puts ''
+  #
+  #   response = alchemyapi.concepts('text', demo_text)
+  #
+  #   if response['status'] == 'OK'
+  #     puts '## Response Object ##'
+  #     puts JSON.pretty_generate(response)
+  #
+  #
+  #     puts ''
+  #     puts '## Concepts ##'
+  #     for concept in response['concepts']
+  #       puts 'text: ' + concept['text']
+  #       puts 'relevance: ' + concept['relevance']
+  #       puts ''
+  #       i = Concept.new
+  #       i.idea = concept['text']
+  #       i.relevance = concept['relevance']
+  #       i.save
+  #     end
+  #   else
+  #     puts 'Error in concept tagging call: ' + response['statusInfo']
+  #   end
+  #   # redirect_to concept_path
+  #   index()
+  # end
 
 
   private

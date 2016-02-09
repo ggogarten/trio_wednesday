@@ -1,5 +1,5 @@
 class SpeechesController < ApplicationController
-  before_action :set_speech, only: [:show, :edit, :update, :destroy]
+  before_action :set_speech, only: [:show, :edit, :update, :destroy, :connect]
 
   # GET /speeches
   # GET /speeches.json
@@ -59,6 +59,50 @@ class SpeechesController < ApplicationController
       format.html { redirect_to speeches_url, notice: 'Speech was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def connect
+    key = 'be2d1daed89556039d606f9062dcef7983146537'
+    alchemyapi = AlchemyAPI.new(key)
+
+    demo_text = @speech.text
+
+    puts ''
+    puts ''
+    puts ''
+    puts '############################################'
+    puts '#  Concept Tagging Example                 #'
+    puts '############################################'
+    puts ''
+    puts ''
+
+    puts 'Processing text: ' + demo_text
+    puts ''
+
+    response = alchemyapi.concepts('text', demo_text)
+
+    if response['status'] == 'OK'
+      puts '## Response Object ##'
+      puts JSON.pretty_generate(response)
+
+
+      puts ''
+      puts '## Concepts ##'
+      for concept in response['concepts']
+        puts 'text: ' + concept['text']
+        puts 'relevance: ' + concept['relevance']
+        puts ''
+        i = Concept.new
+        i.speech = @speech
+        i.idea = concept['text']
+        i.relevance = concept['relevance']
+        i.save
+      end
+    else
+      puts 'Error in concept tagging call: ' + response['statusInfo']
+    end
+    # redirect_to concept_path
+    index()
   end
 
   private

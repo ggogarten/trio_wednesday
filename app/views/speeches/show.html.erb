@@ -15,5 +15,13 @@
   <%= @speech.candidate %>
 </p>
 
+<%= @speech.concepts.count %>
+<p><% @speech.concepts.each do |concept| %>
+<%= concept.idea %>
+<%= concept.relevance %>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_speech_path(@speech) %> |
 <%= link_to 'Back', speeches_path %>
+<%= link_to 'New Watson', "#{@speech.id}/analyze" %>
