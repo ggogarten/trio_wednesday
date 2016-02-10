@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   resources :concepts
   resources :speeches
   resources :candidates
+
+  root 'candidates#index'
   # get 'analyze' => 'concepts#connect'
   get 'speeches/:id/analyze' => 'speeches#connect'
-  
+
+
   # routing to a controller action render different template
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

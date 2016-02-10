@@ -1,3 +1,50 @@
+th_blue {
+    background-color: blue;
+    color: white;
+}
+
+th_red {
+    background-color: red;
+    color: white;
+}
+
+
+
+body {
+  background-image: url("/polipoints_background.png");
+  text-align: center;
+}
+
+h1, h3, p {
+  font-family: "Courier New", "Lucida Console", sans-serif;
+  color: white;
+}
+
+th, tr {
+  font-family: "Courier New", "Lucida Console", sans-serif;
+}
+
+td {
+  font-family: "Courier New", "Lucida Console", sans-serif;
+  font-weight: bold;
+}
+
+.table {
+  background-color: white;
+  opacity: 0.8;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 25px;
+}
+
+th {
+  text-align: center;
+}
+
+#speechtext {
+  width: 60%;
+  margin: 0 auto;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

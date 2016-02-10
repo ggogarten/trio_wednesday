@@ -1,26 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @candidate.name %>
-</p>
+
+<header>
+  <a href= />
+<img src="/pp_logo.png" alt="PoliPoints Logo" class="img">  </a>
+</header>
+
+
+<h1>
+  <strong><%= @candidate.name %></strong>
+</h1>
 
 <p>
   <strong>Party:</strong>
   <%= @candidate.party %>
 </p>
 
-<h3>Speeches</h3>
-<% @candidate.speeches.each do |speech| %> <p>
-<%= speech.date %>
-<%= speech.text %>
-<%= speech.id %>
+<h3>Candidate Speeches</h3>
 
-<%= link_to 'Concepts', speech_path %>
-
-Added on: <%= speech.created_at %>
-</p> <% end %>
-
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Date of Speech</th>
+      <th>Speech</th>
+      <th></th>
+      <th>Date Added</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @candidate.speeches.each do |speech| %>
+    <tr>
+    <td><%= speech.date %></td>
+    <td><%= truncate(speech.text, length: 100) %></td>
+    <td><%= link_to 'Concepts', speech_path %></td>
+    <td><%= speech.created_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 <%= link_to 'Edit', edit_candidate_path(@candidate) %> |
