@@ -15,6 +15,7 @@ class SpeechesController < ApplicationController
   # GET /speeches/new
   def new
     @speech = Speech.new
+    @candidates = Candidate.all
   end
 
   # GET /speeches/1/edit

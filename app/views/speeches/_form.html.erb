@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :candidate_id %><br>
-    <%= f.text_field :candidate_id %>
+    <%= f.select :candidate_id, @candidates.map { |c| [c.name, c.id ] } %>
   </div>
   <div class="actions">
     <%= f.submit %>
