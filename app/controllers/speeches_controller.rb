@@ -101,8 +101,8 @@ class SpeechesController < ApplicationController
     else
       puts 'Error in concept tagging call: ' + response['statusInfo']
     end
-    # redirect_to concept_path
-    index()
+    # redirect_to speeches_path
+redirect_to speech_path
   end
 
   private

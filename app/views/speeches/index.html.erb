@@ -17,7 +17,7 @@
       <tr>
         <td><%= speech.date %></td>
         <td><%= speech.text %></td>
-        <td><%= speech.candidate %></td>
+        <td><%= speech.candidate.name %></td>
         <td><%= link_to 'Show', speech %></td>
         <td><%= link_to 'Edit', edit_speech_path(speech) %></td>
         <td><%= link_to 'Destroy', speech, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -12,7 +12,7 @@
 
 <p>
   <strong>Candidate:</strong>
-  <%= @speech.candidate %>
+  <%= @speech.candidate.name %>
 </p>
 
 <%= @speech.concepts.count %>
@@ -22,6 +22,6 @@
 <% end %>
 </p>
 
-<%= link_to 'Edit', edit_speech_path(@speech) %> |
-<%= link_to 'Back', speeches_path %>
+<%= link_to 'Edit', edit_speech_path(@speech) %>
+<%= link_to 'Back', {controller: 'candidates', action: 'show', id: "#{@speech.candidate_id}"} %>
 <%= link_to 'New Watson', "#{@speech.id}/analyze" %>
