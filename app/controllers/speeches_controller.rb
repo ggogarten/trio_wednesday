@@ -1,3 +1,5 @@
+require './alchemyapi.rb'
+
 class SpeechesController < ApplicationController
   before_action :set_speech, only: [:show, :edit, :update, :destroy, :connect]
 
