@@ -46,3 +46,5 @@ group :development do
 end
 
 gem 'json'
+
+gem 'pg'
