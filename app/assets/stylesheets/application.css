@@ -13,6 +13,8 @@ th_red {
 body {
   background-image: url("/polipoints_background.png");
   text-align: center;
+  background-repeat: repeat-y;
+  background-position: top;
 }
 
 h1, h3, p {
